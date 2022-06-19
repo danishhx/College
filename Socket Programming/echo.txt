@@ -1,3 +1,5 @@
+To create client and server side socket and use them to implement Echo Service
+
 client
 -------------------------
 import java.util.*;
