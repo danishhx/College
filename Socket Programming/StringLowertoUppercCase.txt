@@ -1,3 +1,8 @@
+title-To create client and server side socket and use them to send a string in lowercase from client to server, the server then convert the string in uppercase and return back to client
+
+
+server
+----------
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -22,6 +27,9 @@ public class echo_server {
     }
 }
 
+
+client
+--------
 public class echo_client {
     public static void main(String[] args) throws Exception {
 
