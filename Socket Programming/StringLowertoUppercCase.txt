@@ -1,0 +1,42 @@
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+public class echo_server {
+    public static void main(String[] args) throws Exception {
+
+        ServerSocket serversock = new ServerSocket(9806);
+        Socket client_sock = serversock.accept();
+
+        System.out.println("connection established");
+
+        Scanner in = new Scanner(client_sock.getInputStream());
+
+        String new_word = in.nextLine();
+        new_word = new_word.toUpperCase();
+
+        DataOutputStream out = new DataOutputStream(client_sock.getOutputStream());
+        out.writeBytes(new_word + "\n");
+
+        client_sock.close();
+    }
+}
+
+public class echo_client {
+    public static void main(String[] args) throws Exception {
+
+        Socket sock = new Socket("localhost", 9806);
+
+        Scanner in = new Scanner(System.in);
+        String word = in.nextLine();
+
+        DataOutputStream out = new DataOutputStream(sock.getOutputStream());
+        out.writeBytes(word + "\n");
+
+        Scanner server_sends = new Scanner(sock.getInputStream());
+
+        System.out.println("Server : " + server_sends.nextLine());
+
+        sock.close();
+    }
+}

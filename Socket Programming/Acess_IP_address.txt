@@ -1,0 +1,14 @@
+Titlte- Accessing the ip address of local machine and or any other machine
+
+
+import java.net.*;
+
+class InetAddressTest {
+	public static void main(String[] args)
+	throws UnknownHostException {
+			InetAddress address = InetAddress.getLocalHost();
+			System.out.println(address);
+			address = InetAddress.getByName("www.google.com");
+			System.out.println(address);
+	}
+}

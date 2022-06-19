@@ -1,0 +1,54 @@
+client
+-------------------------
+import java.util.*;
+import java.io.*;
+import java.net.*;
+
+class echoclient {
+    public static void main(String[] args) throws Exception {
+
+        Socket cls_sock = new Socket("localhost", 7);
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter a String : ");
+        String s = in.nextLine();
+
+        DataOutputStream out = new DataOutputStream(cls_sock.getOutputStream());
+        Scanner servein = new Scanner(cls_sock.getInputStream());
+
+        out.writeBytes(s + "\n");
+        System.out.println("Message send to Server....");
+
+        String serveValue = servein.nextLine();
+
+        System.out.println("Server : " + serveValue);
+
+        cls_sock.close();
+        in.close();
+    }
+}
+
+server
+--------------
+import java.util.*;
+import java.io.*;
+import java.net.*;
+
+class echoserver {
+    public static void main(String[] args) throws Exception {
+
+        System.out.println("Connecting.......");
+
+        ServerSocket ss = new ServerSocket(7);
+        Socket cls_sock = ss.accept();
+
+        System.out.println("Connection Established \n");
+
+        Scanner in = new Scanner(cls_sock.getInputStream());
+        DataOutputStream out = new DataOutputStream(cls_sock.getOutputStream());
+
+        String s = in.nextLine();
+        out.writeBytes(s);
+        ss.close();
+    }
+}
